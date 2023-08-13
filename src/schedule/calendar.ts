@@ -1,9 +1,9 @@
 import ical, {CalendarResponse, VEvent} from "node-ical";
-import {FINCH_CALENDAR} from "../env.ts";
+import {env} from "../env.ts";
 import {eachDayOfInterval, Interval, isWithinInterval, startOfDay} from "date-fns";
 
 export async function fetchFinchCalendar(): Promise<CalendarResponse> {
-    return ical.async.fromURL(FINCH_CALENDAR);
+    return ical.async.fromURL(env.FINCH_CALENDAR);
 }
 
 export async function findAndPartitionEventsByDay(interval: Interval) {

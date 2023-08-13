@@ -1,5 +1,6 @@
 import {Client, Events} from "discord.js";
 import {listenForCommands} from "./commands.ts";
+import {env} from "./env.ts";
 
 const client = new Client({intents: []});
 
@@ -9,4 +10,4 @@ client.once(Events.ClientReady, (c) => {
 
 await listenForCommands(client);
 
-await client.login(process.env.DISCORD_TOKEN);
+await client.login(env.DISCORD_TOKEN);

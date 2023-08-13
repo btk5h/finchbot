@@ -1,17 +1,7 @@
-export const DISCORD_CLIENT_ID = process.env.DISCORD_CLIENT_ID!
+import {cleanEnv, str, url} from "envalid";
 
-export const DISCORD_TOKEN = process.env.DISCORD_TOKEN!
-
-export const FINCH_CALENDAR = process.env.FINCH_CALENDAR!
-
-if (!DISCORD_CLIENT_ID) {
-    throw new Error("Environment variable DISCORD_CLIENT_ID must be set")
-}
-
-if (!DISCORD_TOKEN) {
-    throw new Error("Environment variable DISCORD_TOKEN must be set")
-}
-
-if (!FINCH_CALENDAR) {
-    throw new Error("Environment variable FINCH_CALENDAR must be set")
-}
+export const env = cleanEnv(process.env, {
+    DISCORD_CLIENT_ID: str({desc: "The application id of the Discord application"}),
+    DISCORD_TOKEN: str({desc: "The bot token of the Discord application"}),
+    FINCH_CALENDAR: url({desc: "A link to Finch's schedule, in .ics format"})
+});
